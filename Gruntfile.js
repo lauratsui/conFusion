@@ -4,7 +4,10 @@ module.exports = function(grunt) {
 
 	require('time-grunt')(grunt);
 
-	require('jit-grunt')(grunt);
+	require('jit-grunt')(grunt, {
+		useminPrepare: 'grunt-usemin'
+	});
+
 	grunt.initConfig({
 		sass: {
 			dist: {
@@ -85,7 +88,7 @@ module.exports = function(grunt) {
 						css: [{
 							name: 'cssmin',
 							createConfig: function (context, block) {
-								var generated = context.options.generated; 
+							var generated = context.options.generated; 
 								generated.options = {
 									keepSpecialComments: 0, rebase: false
 								};
@@ -121,7 +124,7 @@ module.exports = function(grunt) {
 					]
 				}]
 			}
-		}
+		},
 		usemin: {
 			html: ['dist/contactus.html', 'dist/aboutus.html', 'dist/index.html'],
 			options: {
@@ -136,7 +139,7 @@ module.exports = function(grunt) {
 				files: {
 					'dist/index.html': 'dist/index.html',
 					'dist/contactus.html': 'dist/contactus.html',
-					'dist/aboutus.html': 'dist/aboutus.html'
+					'dist/aboutus.html': 'dist/aboutus.html',
 				}
 			}
 		}
@@ -147,6 +150,14 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', [
 		'clean',
 		'copy',
-		'imagemin'
+		'imagemin',
+		'useminPrepare',
+		'concat',
+		'cssmin',
+		'uglify',
+		'filerev',
+		'usemin',
+		'htmlmin'
 		]);
+
 };
