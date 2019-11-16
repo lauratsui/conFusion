@@ -1,0 +1,2 @@
+root: C:\Users\kench\Desktop\Webdev coursera\Bootstrap4-starter\Bootstrap4\conFusion\nvm
+path: C:\Program Files\nodejs
